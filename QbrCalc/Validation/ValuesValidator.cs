@@ -11,7 +11,11 @@ namespace QbrCalc.Validation
     public ValidationResult ValidateInputs(int passAttempts, int completions, int yardsGained,
       int touchdowns, int interceptions)
     {
-      if (passAttempts < 0)
+      if (passAttempts == decimal.Zero)
+      {
+        return ValidationResult.Fail("Pass attempts cannot be zero");
+      }
+      if (passAttempts < decimal.Zero)
       {
         return ValidationResult.Fail("Pass attempts must be greater than zero.");
       }
@@ -21,12 +25,12 @@ namespace QbrCalc.Validation
         return ValidationResult.Fail("Passes attempted must be greater than or equal to the passes completed.");
       }
 
-      if (completions < 0)
+      if (completions < decimal.Zero)
       {
         return ValidationResult.Fail("Completions must be greater than zero.");
       }
 
-      if (touchdowns < 0)
+      if (touchdowns < decimal.Zero)
       {
         return ValidationResult.Fail("Touchdowns cannot be less than zero.");
       }
@@ -41,7 +45,7 @@ namespace QbrCalc.Validation
         return ValidationResult.Fail("Touchdowns cannot be greater than the number of completions.");
       }
 
-      if (interceptions < 0)
+      if (interceptions < decimal.Zero)
       {
         return ValidationResult.Fail("Interceptions cannot be less than zero");
       }

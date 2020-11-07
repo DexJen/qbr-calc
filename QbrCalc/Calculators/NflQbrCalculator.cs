@@ -12,7 +12,6 @@ namespace QbrCalc.Calculators
     public static decimal CalculateQbr(int attempts, int completions, int yardsGained, int touchdowns, 
       int interceptions)
     {
-      // TODO: Validate the inputs here? 
       var completionVar = (decimal.Divide(completions, attempts) - 0.3M) * 5M;
       if (completionVar > NFLLimit) completionVar = NFLLimit;
       if (completionVar < decimal.Zero) completionVar = 0;

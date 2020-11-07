@@ -1,0 +1,84 @@
+﻿<Window x:Class="QbrCalc.QbrCalcWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:QbrCalc"
+        xmlns:ll="clr-namespace:QbrCalc.Behaviors"
+        mc:Ignorable="d"
+        Title="QBR Calculator" Height="450" Width="700"
+        DataContext="{Binding QbrCalcModel, Source={StaticResource ViewModelLocator}}"
+        WindowStartupLocation="CenterScreen"
+        MinWidth="650">
+
+  <Window.Resources>
+    <ResourceDictionary>
+      <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="ResourceDictionary.xaml" />
+      </ResourceDictionary.MergedDictionaries>
+    </ResourceDictionary>
+  </Window.Resources>
+
+  <Border Padding="12,6">
+    <Grid>
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition />
+        <ColumnDefinition Width="270" />
+      </Grid.ColumnDefinitions>
+      <Grid.RowDefinitions>
+        <RowDefinition />
+        <RowDefinition Height="34" />
+      </Grid.RowDefinitions>
+
+      <Grid Grid.Column="0" Row="0">
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition />
+          <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+          <RowDefinition Height="32" />
+          <RowDefinition Height="32" />
+          <RowDefinition Height="32"/>
+          <RowDefinition Height="32"/>
+          <RowDefinition Height="32"/>
+          <RowDefinition Height="34" />
+          <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <Label Grid.Row="0" Grid.Column="0" Content="Passes Attempted:" VerticalAlignment="Center" />
+        <TextBox Grid.Row="0" Grid.Column="1" ll:NumericOnlyBehavior.IsEnabled="True" Text="{Binding PassesAttempted}" Margin="0,4" 
+                 Width="80" HorizontalAlignment="Left" VerticalContentAlignment="Center"/>
+        
+        <Label Grid.Row="1" Grid.Column="0" Content="Passes Completed:" VerticalAlignment="Center" />
+        <TextBox Grid.Row="1" Grid.Column="1" ll:NumericOnlyBehavior.IsEnabled="True" Text="{Binding PassesCompleted}" Margin="0,4"
+                 Width="80" HorizontalAlignment="Left" VerticalContentAlignment="Center" />
+
+        <Label Grid.Row="2" Grid.Column="0" Content="Yards Gained:" VerticalAlignment="Center" />
+        <TextBox Grid.Row="2" Grid.Column="1" ll:NumericOnlyBehavior.IsEnabled="True" Text="{Binding YardsGained}" Margin="0,4"
+                 Width="80" HorizontalAlignment="Left" VerticalContentAlignment="Center"/>
+
+        <Label Grid.Row="3" Grid.Column="0" Content="Touchdowns:" VerticalAlignment="Center" />
+        <TextBox Grid.Row="3" Grid.Column="1" ll:NumericOnlyBehavior.IsEnabled="True" Text="{Binding Touchdowns}" Margin="0,4" 
+                 Width="80" HorizontalAlignment="Left" VerticalContentAlignment="Center" />
+
+        <Label Grid.Row="4" Grid.Column="0" Content="Interceptions:" VerticalAlignment="Center" />
+        <TextBox Grid.Row="4" Grid.Column="1" ll:NumericOnlyBehavior.IsEnabled="True" Text="{Binding Interceptions}" Margin="0,4"
+                 Width="80" HorizontalAlignment="Left" VerticalContentAlignment="Center" />
+
+        <Button Grid.Row="5" Grid.Column="0" x:Name="CalcNFLQBRButton" Margin="10,4" Content="Calculate NFL QBR"
+                Command="{Binding CalculateNflQbr}"/>
+        <Button Grid.Row="5" Grid.Column="1" x:Name="CalcNCAAQBRButton" Margin="10,4" Content="Calculate NCAA QBR"
+                Command="{Binding CalculateNcaaQbr}"/>
+
+        <TextBlock Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" x:Name="ErrorMessageTextBlock" Margin="0,8,0,4" 
+                   Text="{Binding ValidationError}" Foreground="DarkRed" Padding="2,0,2,0"/>
+      </Grid>
+
+      <ListBox Grid.Column="1" Grid.Row="0" ItemsSource="{Binding CalculationResults}"
+               ItemTemplate="{DynamicResource QbrResultsItemTemplate}"></ListBox>
+
+      <Button Grid.Row="1" Grid.Column="1" Content="Exit" Margin="0,6,0,4" Width="120" HorizontalAlignment="Right"
+              Command="{Binding ExitAppCommand}"/>
+    </Grid>
+  </Border>
+</Window>
