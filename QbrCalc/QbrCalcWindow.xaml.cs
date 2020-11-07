@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using System.Windows.Controls;
 
 namespace QbrCalc
 {
@@ -10,6 +11,19 @@ namespace QbrCalc
     public QbrCalcWindow()
     {
       InitializeComponent();
+    }
+
+    private void TextBoxGotFocus(object sender, RoutedEventArgs e)
+    {
+      if (sender is TextBox tb)
+      {
+        tb.SelectAll();
+      }
+    }
+
+    private void QbrCalcWindowLoaded(object sender, RoutedEventArgs e)
+    {
+      PassedAttemptedTextBox.Focus();
     }
   }
 }

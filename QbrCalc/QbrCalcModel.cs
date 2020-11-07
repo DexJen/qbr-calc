@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using System.Windows;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
@@ -68,27 +69,16 @@ namespace QbrCalc
       {
         return _calculateNflQbr ?? (_calculateNflQbr = new RelayCommand(() =>
         {
-          var attempted = PassesAttempted.ToInt();
-          var completed = PassesCompleted.ToInt();
-          var yardsGained = YardsGained.ToInt();
-          var touchdowns = Touchdowns.ToInt();
-          var interceptions = Interceptions.ToInt();
-
-          var result = _validator.ValidateInputs(attempted, completed, yardsGained, touchdowns, interceptions);
-          if (!result.IsValid)
-          {
-            ValidationError = result.ErrorMessage;
-          }
-          else
+          ValidateInputValues((atp, cmp, yards, tds, ints) =>
           {
             ValidationError = string.Empty;
-            var qbr = NflQbrCalculator.CalculateQbr(attempted, completed, yardsGained, touchdowns, interceptions);
+            var qbr = NflQbrCalculator.CalculateQbr(atp, cmp, yards, tds, ints);
             CalculationResults.Add(new QbrCalculationResult
             {
               CalculationType = "NFL",
               Qbr = $"{qbr:##0.0}"
             });
-          }
+          });
         }));
       }
     }
@@ -99,21 +89,16 @@ namespace QbrCalc
       {
         return _calculateNcaaQbr ?? (_calculateNcaaQbr = new RelayCommand(() =>
         {
-          var attempted = PassesAttempted.ToInt();
-          var completed = PassesCompleted.ToInt();
-          var yardsGained = YardsGained.ToInt();
-          var touchdowns = Touchdowns.ToInt();
-          var interceptions = Interceptions.ToInt();
-
-          var result = _validator.ValidateInputs(attempted, completed, yardsGained, touchdowns, interceptions);
-          if (!result.IsValid)
-          {
-            ValidationError = result.ErrorMessage;
-          }
-          else
+          ValidateInputValues((atp, cmp, yards, tds, ints) =>
           {
             ValidationError = string.Empty;
-          }
+            var qbr = NcaaQbrCalculator.CalculateQbr(atp, cmp, yards, tds, ints);
+            CalculationResults.Add(new QbrCalculationResult
+            {
+              CalculationType = "NCAA",
+              Qbr = $"{qbr:##0.0}"
+            });
+          });
         }));
       }
     }
@@ -140,6 +125,22 @@ namespace QbrCalc
         CalculationResults.Add(new QbrCalculationResult{ Qbr = "112.3", CalculationType = "NFL" });
         CalculationResults.Add(new QbrCalculationResult{ Qbr = "90.4", CalculationType = "NCAA" });
       }
+    }
+
+    private void ValidateInputValues(Action<int, int, int, int, int> calculateQbr)
+    {
+      var attempted = PassesAttempted.ToInt();
+      var completed = PassesCompleted.ToInt();
+      var yardsGained = YardsGained.ToInt();
+      var touchdowns = Touchdowns.ToInt();
+      var interceptions = Interceptions.ToInt();
+
+      _validator.ValidateInputs(attempted, completed, yardsGained, touchdowns, interceptions)
+        .OnFailure(res => ValidationError = res.ErrorMessage)
+        .OnSuccess(() =>
+        {
+          calculateQbr(attempted, completed, yardsGained, touchdowns, interceptions);
+        });
     }
   }
 }

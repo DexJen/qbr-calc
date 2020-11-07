@@ -13,7 +13,7 @@ namespace QbrCalc.Validation
     {
       if (passAttempts == decimal.Zero)
       {
-        return ValidationResult.Fail("Pass attempts cannot be zero");
+        return ValidationResult.Fail("Pass attempts cannot be zero.");
       }
       if (passAttempts < decimal.Zero)
       {

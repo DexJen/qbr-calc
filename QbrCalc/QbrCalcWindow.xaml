@@ -9,7 +9,7 @@
         Title="QBR Calculator" Height="450" Width="700"
         DataContext="{Binding QbrCalcModel, Source={StaticResource ViewModelLocator}}"
         WindowStartupLocation="CenterScreen"
-        MinWidth="650">
+        MinWidth="650" MinHeight="430" Loaded="QbrCalcWindowLoaded">
 
   <Window.Resources>
     <ResourceDictionary>
@@ -47,23 +47,28 @@
 
         <Label Grid.Row="0" Grid.Column="0" Content="Passes Attempted:" VerticalAlignment="Center" />
         <TextBox Grid.Row="0" Grid.Column="1" ll:NumericOnlyBehavior.IsEnabled="True" Text="{Binding PassesAttempted}" Margin="0,4" 
-                 Width="80" HorizontalAlignment="Left" VerticalContentAlignment="Center"/>
+                 Width="80" HorizontalAlignment="Left" VerticalContentAlignment="Center" GotKeyboardFocus="TextBoxGotFocus"
+                 x:Name="PassedAttemptedTextBox" GotMouseCapture="TextBoxGotFocus"/>
         
         <Label Grid.Row="1" Grid.Column="0" Content="Passes Completed:" VerticalAlignment="Center" />
         <TextBox Grid.Row="1" Grid.Column="1" ll:NumericOnlyBehavior.IsEnabled="True" Text="{Binding PassesCompleted}" Margin="0,4"
-                 Width="80" HorizontalAlignment="Left" VerticalContentAlignment="Center" />
+                 Width="80" HorizontalAlignment="Left" VerticalContentAlignment="Center" GotKeyboardFocus="TextBoxGotFocus"
+                 GotMouseCapture="TextBoxGotFocus"/>
 
         <Label Grid.Row="2" Grid.Column="0" Content="Yards Gained:" VerticalAlignment="Center" />
         <TextBox Grid.Row="2" Grid.Column="1" ll:NumericOnlyBehavior.IsEnabled="True" Text="{Binding YardsGained}" Margin="0,4"
-                 Width="80" HorizontalAlignment="Left" VerticalContentAlignment="Center"/>
+                 Width="80" HorizontalAlignment="Left" VerticalContentAlignment="Center" GotKeyboardFocus="TextBoxGotFocus"
+                 GotMouseCapture="TextBoxGotFocus"/>
 
         <Label Grid.Row="3" Grid.Column="0" Content="Touchdowns:" VerticalAlignment="Center" />
         <TextBox Grid.Row="3" Grid.Column="1" ll:NumericOnlyBehavior.IsEnabled="True" Text="{Binding Touchdowns}" Margin="0,4" 
-                 Width="80" HorizontalAlignment="Left" VerticalContentAlignment="Center" />
+                 Width="80" HorizontalAlignment="Left" VerticalContentAlignment="Center" GotKeyboardFocus="TextBoxGotFocus"
+                 GotMouseCapture="TextBoxGotFocus"/>
 
         <Label Grid.Row="4" Grid.Column="0" Content="Interceptions:" VerticalAlignment="Center" />
         <TextBox Grid.Row="4" Grid.Column="1" ll:NumericOnlyBehavior.IsEnabled="True" Text="{Binding Interceptions}" Margin="0,4"
-                 Width="80" HorizontalAlignment="Left" VerticalContentAlignment="Center" />
+                 Width="80" HorizontalAlignment="Left" VerticalContentAlignment="Center" GotKeyboardFocus="TextBoxGotFocus"
+                 GotMouseCapture="TextBoxGotFocus"/>
 
         <Button Grid.Row="5" Grid.Column="0" x:Name="CalcNFLQBRButton" Margin="10,4" Content="Calculate NFL QBR"
                 Command="{Binding CalculateNflQbr}"/>
@@ -71,7 +76,7 @@
                 Command="{Binding CalculateNcaaQbr}"/>
 
         <TextBlock Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" x:Name="ErrorMessageTextBlock" Margin="0,8,0,4" 
-                   Text="{Binding ValidationError}" Foreground="DarkRed" Padding="2,0,2,0"/>
+                   Text="{Binding ValidationError}" Foreground="DarkRed" Padding="2,0,2,0" TextWrapping="Wrap"/>
       </Grid>
 
       <ListBox Grid.Column="1" Grid.Row="0" ItemsSource="{Binding CalculationResults}"
