@@ -73,7 +73,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Behaviors\IntegerValueBehavior.cs" />
     <Compile Include="Behaviors\NumericOnlyBehavior.cs" />
     <Compile Include="QbrCalcModel.cs" />
     <Compile Include="Util\ConvertExtensions.cs" />

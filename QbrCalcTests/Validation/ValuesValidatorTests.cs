@@ -19,7 +19,7 @@ namespace QbrCalcTests.Validation
     {
       var result = _validator.ValidateInputs(0, 3, 100, 0, 0);
       Assert.IsFalse(result.IsValid);
-      Assert.AreEqual("Pass attempts cannot be zero", result.ErrorMessage);
+      Assert.AreEqual("Pass attempts cannot be zero.", result.ErrorMessage);
 
       result = _validator.ValidateInputs(-10, 5, 100, 0, 0);
       Assert.IsFalse(result.IsValid);
