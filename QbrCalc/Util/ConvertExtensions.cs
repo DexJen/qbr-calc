@@ -12,7 +12,7 @@ namespace QbrCalc.Util
     /// <exception cref="OverflowException">Thrown if string has a numeric representation that is too large or too small</exception>
     public static int ToInt(this string value)
     {
-      return string.IsNullOrEmpty(value) 
+      return value.IsNullOrEmpty() 
         ? 0 
         : Convert.ToInt32(value, CultureInfo.CurrentCulture);
     }

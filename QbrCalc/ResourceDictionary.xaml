@@ -30,4 +30,19 @@
     </Border>
   </DataTemplate>
 
+  <ControlTemplate x:Key="InvalidValueTemplate">
+    <DockPanel>
+      <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" >
+        <AdornedElementPlaceholder x:Name="ErrorAdorner"></AdornedElementPlaceholder>
+        <Grid Width="12" Height="12">
+          <Ellipse Width="12" Height="12" Fill="Red" HorizontalAlignment="Center" VerticalAlignment="Center" />
+          <TextBlock Foreground="Red" FontWeight="SemiBold" Margin="2,0,0,0" 
+                     Text="{Binding ElementName=ErrorAdorner, Path=AdornedElement.(Validation.Errors)[0].ErrorContent}">
+            X
+          </TextBlock>
+        </Grid>
+      </StackPanel>
+    </DockPanel>
+  </ControlTemplate>
+
 </ResourceDictionary>

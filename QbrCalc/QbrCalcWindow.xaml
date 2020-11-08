@@ -6,10 +6,11 @@
         xmlns:local="clr-namespace:QbrCalc"
         xmlns:ll="clr-namespace:QbrCalc.Behaviors"
         mc:Ignorable="d"
-        Title="QBR Calculator" Height="450" Width="700"
+        Title="QBR Calculator" Height="302" Width="700"
         DataContext="{Binding QbrCalcModel, Source={StaticResource ViewModelLocator}}"
         WindowStartupLocation="CenterScreen"
-        MinWidth="650" MinHeight="430" Loaded="QbrCalcWindowLoaded">
+        MinWidth="650" MinHeight="302" Loaded="QbrCalcWindowLoaded"
+        Icon="Resources/Football.ico">
 
   <Window.Resources>
     <ResourceDictionary>
@@ -41,6 +42,7 @@
           <RowDefinition Height="32"/>
           <RowDefinition Height="32"/>
           <RowDefinition Height="32"/>
+          <RowDefinition Height="28" />
           <RowDefinition Height="34" />
           <RowDefinition />
         </Grid.RowDefinitions>
@@ -70,12 +72,12 @@
                  Width="80" HorizontalAlignment="Left" VerticalContentAlignment="Center" GotKeyboardFocus="TextBoxGotFocus"
                  GotMouseCapture="TextBoxGotFocus"/>
 
-        <Button Grid.Row="5" Grid.Column="0" x:Name="CalcNFLQBRButton" Margin="10,4" Content="Calculate NFL QBR"
+        <Button Grid.Row="6" Grid.Column="0" x:Name="CalcNFLQBRButton" Margin="10,4" Content="Calculate NFL QBR"
                 Command="{Binding CalculateNflQbr}"/>
-        <Button Grid.Row="5" Grid.Column="1" x:Name="CalcNCAAQBRButton" Margin="10,4" Content="Calculate NCAA QBR"
+        <Button Grid.Row="6" Grid.Column="1" x:Name="CalcNCAAQBRButton" Margin="10,4" Content="Calculate NCAA QBR"
                 Command="{Binding CalculateNcaaQbr}"/>
 
-        <TextBlock Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" x:Name="ErrorMessageTextBlock" Margin="0,8,0,4" 
+        <TextBlock Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" x:Name="ErrorMessageTextBlock" Margin="0,8,0,4" 
                    Text="{Binding ValidationError}" Foreground="DarkRed" Padding="2,0,2,0" TextWrapping="Wrap"/>
       </Grid>
 

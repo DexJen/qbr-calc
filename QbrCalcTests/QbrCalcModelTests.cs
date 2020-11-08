@@ -1,5 +1,6 @@
 ﻿using NUnit.Framework;
 using QbrCalc;
+using QbrCalc.Util;
 
 namespace QbrCalcTests
 {
@@ -13,12 +14,12 @@ namespace QbrCalcTests
 
       model.CalculateNflQbr.Execute(null);
 
-      Assert.IsFalse(string.IsNullOrEmpty(model.ValidationError));
+      Assert.IsFalse(model.ValidationError.IsNullOrEmpty());
 
       model.ValidationError = string.Empty;
       model.CalculateNcaaQbr.Execute(null);
 
-      Assert.IsFalse(string.IsNullOrEmpty(model.ValidationError));
+      Assert.IsFalse(model.ValidationError.IsNullOrEmpty());
     }
 
     [Test]
@@ -32,13 +33,13 @@ namespace QbrCalcTests
 
       model.CalculateNflQbr.Execute(null);
 
-      Assert.IsFalse(string.IsNullOrEmpty(model.ValidationError));
+      Assert.IsFalse(model.ValidationError.IsNullOrEmpty());
       Assert.AreEqual("Passes attempted must be greater than or equal to the passes completed.", model.ValidationError);
 
       model.ValidationError = string.Empty;
       model.CalculateNcaaQbr.Execute(null);
 
-      Assert.IsFalse(string.IsNullOrEmpty(model.ValidationError));
+      Assert.IsFalse(model.ValidationError.IsNullOrEmpty());
       Assert.AreEqual("Passes attempted must be greater than or equal to the passes completed.", model.ValidationError);
 
       model.PassesAttempted = "0";
@@ -46,7 +47,7 @@ namespace QbrCalcTests
       model.ValidationError = string.Empty;
       model.CalculateNcaaQbr.Execute(null);
 
-      Assert.IsFalse(string.IsNullOrEmpty(model.ValidationError));
+      Assert.IsFalse(model.ValidationError.IsNullOrEmpty());
       Assert.AreEqual("Pass attempts cannot be zero.", model.ValidationError);
     }
 
@@ -64,12 +65,12 @@ namespace QbrCalcTests
 
       model.CalculateNflQbr.Execute(null);
 
-      Assert.IsTrue(string.IsNullOrEmpty(model.ValidationError));
+      Assert.IsTrue(model.ValidationError.IsNullOrEmpty());
       Assert.That(model.CalculationResults.Count, Is.EqualTo(1));
 
       model.CalculateNcaaQbr.Execute(null);
 
-      Assert.IsTrue(string.IsNullOrEmpty(model.ValidationError));
+      Assert.IsTrue(model.ValidationError.IsNullOrEmpty());
       Assert.That(model.CalculationResults.Count, Is.EqualTo(2));
     }
   }

@@ -62,7 +62,11 @@ namespace QbrCalcTests.Calculators
     [Test]
     public void NflQbrCalculatorInterceptionsTests()
     {
+      var result = NflQbrCalculator.CalculateQbr(20, 15, 120, 0, 5);
+      Assert.AreEqual(50M, result);
 
+      result = NflQbrCalculator.CalculateQbr(30, 25, 275, 0, 0);
+      Assert.AreEqual(104.9M, result);
     }
   }
 }

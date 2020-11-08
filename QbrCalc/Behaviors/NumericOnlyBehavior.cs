@@ -6,6 +6,9 @@ using System.Windows.Input;
 
 namespace QbrCalc.Behaviors
 {
+  /// <summary>
+  /// Attached/Dependent property that can be applied to TextBox controls to only allow numeric entry. Only 0-9 are allowed.
+  /// </summary>
   public static class NumericOnlyBehavior
   {
     public static readonly DependencyProperty IsEnabledProperty =
