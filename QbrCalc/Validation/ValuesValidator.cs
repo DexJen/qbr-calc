@@ -62,7 +62,7 @@ namespace QbrCalc.Validation
 
       if (interceptions > passAttempts - completions)
       {
-        return ValidationResult.Fail("Interceptions cannot be greater than the pass attempts minus completions amount.");
+        return ValidationResult.Fail("Interceptions cannot be greater than the pass attempts minus completions.");
       }
 
       return new ValidationResult { IsValid = true };
