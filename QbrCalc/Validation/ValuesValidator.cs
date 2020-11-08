@@ -60,6 +60,11 @@ namespace QbrCalc.Validation
         return ValidationResult.Fail("The touchdowns plus the interceptions cannot be greater than the number of pass attempts.");
       }
 
+      if (interceptions > passAttempts - completions)
+      {
+        return ValidationResult.Fail("Interceptions cannot be greater than the pass attempts minus completions amount.");
+      }
+
       return new ValidationResult { IsValid = true };
     }
   }

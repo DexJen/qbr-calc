@@ -91,6 +91,10 @@ namespace QbrCalcTests.Validation
       result = _validator.ValidateInputs(14, 10, 200, 9, 1);
       Assert.IsTrue(result.IsValid);
       Assert.IsNull(result.ErrorMessage);
+
+      result = _validator.ValidateInputs(10, 5, 30, 0, 6);
+      Assert.IsFalse(result.IsValid);
+      Assert.AreEqual("Interceptions cannot be greater than the pass attempts minus completions amount.", result.ErrorMessage);
     }
   }
 }
