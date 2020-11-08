@@ -39,7 +39,7 @@ namespace QbrCalcTests.Validation
     {
       var result = _validator.ValidateInputs(20, -3, 200, 0, 0);
       Assert.IsFalse(result.IsValid);
-      Assert.AreEqual("Completions must be greater than zero.", result.ErrorMessage);
+      Assert.AreEqual("Completions cannot be less than zero.", result.ErrorMessage);
 
       result = _validator.ValidateInputs(20, 19, 200, 0, 0);
       Assert.IsTrue(result.IsValid);

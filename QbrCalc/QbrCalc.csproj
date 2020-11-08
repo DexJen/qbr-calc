@@ -81,6 +81,7 @@
     <Compile Include="Util\ConvertExtensions.cs" />
     <Compile Include="Util\ResultExtensions.cs" />
     <Compile Include="Util\StringExtensions.cs" />
+    <Compile Include="Validation\AttemptsValidationRule.cs" />
     <Compile Include="Validation\ValidationResult.cs" />
     <Compile Include="Validation\ValuesValidator.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />

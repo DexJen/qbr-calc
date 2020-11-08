@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:QbrCalc"
         xmlns:ll="clr-namespace:QbrCalc.Behaviors"
+        xmlns:validation="clr-namespace:QbrCalc.Validation"
         mc:Ignorable="d"
         Title="QBR Calculator" Height="302" Width="700"
         DataContext="{Binding QbrCalcModel, Source={StaticResource ViewModelLocator}}"
@@ -48,10 +49,19 @@
         </Grid.RowDefinitions>
 
         <Label Grid.Row="0" Grid.Column="0" Content="Passes Attempted:" VerticalAlignment="Center" />
-        <TextBox Grid.Row="0" Grid.Column="1" ll:NumericOnlyBehavior.IsEnabled="True" Text="{Binding PassesAttempted}" Margin="0,4" 
+        <TextBox Grid.Row="0" Grid.Column="1" ll:NumericOnlyBehavior.IsEnabled="True" Margin="0,4" 
                  Width="80" HorizontalAlignment="Left" VerticalContentAlignment="Center" GotKeyboardFocus="TextBoxGotFocus"
-                 x:Name="PassedAttemptedTextBox" GotMouseCapture="TextBoxGotFocus"/>
-        
+                 x:Name="PassedAttemptedTextBox" GotMouseCapture="TextBoxGotFocus">
+          <TextBox.Text>
+            <Binding Path="PassesAttempted" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged"
+                     ValidatesOnNotifyDataErrors="True" ValidatesOnDataErrors="True" NotifyOnValidationError="True" >
+              <Binding.ValidationRules>
+                <validation:AttemptsValidationRule ValidatesOnTargetUpdated="True" />
+              </Binding.ValidationRules>
+            </Binding>
+          </TextBox.Text>
+        </TextBox>
+
         <Label Grid.Row="1" Grid.Column="0" Content="Passes Completed:" VerticalAlignment="Center" />
         <TextBox Grid.Row="1" Grid.Column="1" ll:NumericOnlyBehavior.IsEnabled="True" Text="{Binding PassesCompleted}" Margin="0,4"
                  Width="80" HorizontalAlignment="Left" VerticalContentAlignment="Center" GotKeyboardFocus="TextBoxGotFocus"

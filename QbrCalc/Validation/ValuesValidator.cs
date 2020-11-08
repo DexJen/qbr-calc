@@ -27,7 +27,7 @@ namespace QbrCalc.Validation
 
       if (completions < decimal.Zero)
       {
-        return ValidationResult.Fail("Completions must be greater than zero.");
+        return ValidationResult.Fail("Completions cannot be less than zero.");
       }
 
       if (touchdowns < decimal.Zero)
