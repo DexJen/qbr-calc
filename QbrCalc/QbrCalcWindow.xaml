@@ -51,7 +51,7 @@
         <Label Grid.Row="0" Grid.Column="0" Content="Passes Attempted:" VerticalAlignment="Center" />
         <TextBox Grid.Row="0" Grid.Column="1" ll:NumericOnlyBehavior.IsEnabled="True" Margin="0,4" 
                  Width="80" HorizontalAlignment="Left" VerticalContentAlignment="Center" GotKeyboardFocus="TextBoxGotFocus"
-                 x:Name="PassedAttemptedTextBox" GotMouseCapture="TextBoxGotFocus">
+                 x:Name="PassedAttemptedTextBox" GotMouseCapture="TextBoxGotFocus" ToolTip="Enter passes attempted">
           <TextBox.Text>
             <Binding Path="PassesAttempted" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged"
                      ValidatesOnNotifyDataErrors="True" ValidatesOnDataErrors="True" NotifyOnValidationError="True" >
@@ -65,22 +65,22 @@
         <Label Grid.Row="1" Grid.Column="0" Content="Passes Completed:" VerticalAlignment="Center" />
         <TextBox Grid.Row="1" Grid.Column="1" ll:NumericOnlyBehavior.IsEnabled="True" Text="{Binding PassesCompleted}" Margin="0,4"
                  Width="80" HorizontalAlignment="Left" VerticalContentAlignment="Center" GotKeyboardFocus="TextBoxGotFocus"
-                 GotMouseCapture="TextBoxGotFocus"/>
+                 GotMouseCapture="TextBoxGotFocus" ToolTip="Enter passes completed"/>
 
         <Label Grid.Row="2" Grid.Column="0" Content="Yards Gained:" VerticalAlignment="Center" />
         <TextBox Grid.Row="2" Grid.Column="1" ll:NumericOnlyBehavior.IsEnabled="True" Text="{Binding YardsGained}" Margin="0,4"
                  Width="80" HorizontalAlignment="Left" VerticalContentAlignment="Center" GotKeyboardFocus="TextBoxGotFocus"
-                 GotMouseCapture="TextBoxGotFocus"/>
+                 GotMouseCapture="TextBoxGotFocus" ToolTip="Enter yards gained"/>
 
         <Label Grid.Row="3" Grid.Column="0" Content="Touchdowns:" VerticalAlignment="Center" />
         <TextBox Grid.Row="3" Grid.Column="1" ll:NumericOnlyBehavior.IsEnabled="True" Text="{Binding Touchdowns}" Margin="0,4" 
                  Width="80" HorizontalAlignment="Left" VerticalContentAlignment="Center" GotKeyboardFocus="TextBoxGotFocus"
-                 GotMouseCapture="TextBoxGotFocus"/>
+                 GotMouseCapture="TextBoxGotFocus" ToolTip="Enter number of touchdowns"/>
 
         <Label Grid.Row="4" Grid.Column="0" Content="Interceptions:" VerticalAlignment="Center" />
         <TextBox Grid.Row="4" Grid.Column="1" ll:NumericOnlyBehavior.IsEnabled="True" Text="{Binding Interceptions}" Margin="0,4"
                  Width="80" HorizontalAlignment="Left" VerticalContentAlignment="Center" GotKeyboardFocus="TextBoxGotFocus"
-                 GotMouseCapture="TextBoxGotFocus"/>
+                 GotMouseCapture="TextBoxGotFocus" ToolTip="Enter number of interceptions"/>
 
         <Button Grid.Row="6" Grid.Column="0" x:Name="CalcNFLQBRButton" Margin="10,4" Content="Calculate NFL QBR"
                 Command="{Binding CalculateNflQbr}"/>
@@ -92,9 +92,9 @@
       </Grid>
 
       <ListBox Grid.Column="1" Grid.Row="0" ItemsSource="{Binding CalculationResults}"
-               ItemTemplate="{DynamicResource QbrResultsItemTemplate}"></ListBox>
+               ItemTemplate="{DynamicResource QbrResultsItemTemplate}" ToolTip="QBR calculation history"></ListBox>
 
-      <Button Grid.Row="1" Grid.Column="1" Content="Exit" Margin="0,6,0,4" Width="120" HorizontalAlignment="Right"
+      <Button Grid.Row="1" Grid.Column="1" Content="Exit" Margin="0,6,0,2" Width="120" HorizontalAlignment="Right"
               Command="{Binding ExitAppCommand}"/>
     </Grid>
   </Border>
